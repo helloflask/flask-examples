@@ -1,8 +1,8 @@
-## Flask Examples
+# Flask Examples
 
 Example applications for Flask beginners.
 
-### Installation
+## Installation
 
 First, you need to clone this repo:
 
@@ -39,7 +39,7 @@ $ . venv/bin/activate  # on Windows, use "venv\Scripts\activate" instead
 $ pip install -r requirements.txt
 ```
 
-### How to Run a Specific Example Application?
+## How to Run a Specific Example Application?
 
 **Before run a specific example application, make sure you have activated the virtual enviroment:**
 
@@ -64,7 +64,7 @@ $ flask run
 
 The applications will always running on http://localhost:5000.
 
-### Example Applications Menu
+## Example Applications Menu
 
 - Hello (`/hello`): Say hello with Flask.
 - HTTP (`/http`): HTTP handing in Flask.
@@ -75,7 +75,7 @@ The applications will always running on http://localhost:5000.
 - Assets (`/assets`): Assets profiling with Flask-Assets.
 - Cache (`/cache`): Cache with Flask-Caching.
 
-### Advanced Examples Flask Applications
+## Advanced Examples Flask Applications
 
 - [SayHello](https://github.com/greyli/sayhello): A simple message board.
 - [Bluelog](https://github.com/greyli/bluelog): A blog engine that supports category and resource management.
@@ -83,10 +83,10 @@ The applications will always running on http://localhost:5000.
 - [Todoism](https://github.com/greyli/todoism): A to-do application implements as SPA, it supports i18n and provides web APIs.
 - [CatChat](https://github.com/greyli/catchat): A chat room based on WebSocket.
 
-### Contributions
+## Contributions
 
 Any contribution is welcome, just fork and submit your PR.
 
-### License
+## License
 
 This project is licensed under the MIT License (see the `LICENSE` file for details).
