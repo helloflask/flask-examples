@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[dev-packages]
+watchdog = "*"
+
+[packages]
+flask-sqlalchemy = "*"
+flask-mail = "*"
+sendgrid = "*"
+flask-migrate = "*"
+flask-caching = "*"
+flask-assets = "*"
+flask = "==1.0"
+flask-debugtoolbar = "*"
+cssmin = "*"
+jsmin = "*"
+redis = "*"
+flask-dropzone = "*"
+flask-wtf = "*"
+flask-ckeditor = "*"
