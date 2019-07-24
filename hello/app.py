@@ -2,7 +2,7 @@
 """
     :author: Grey Li (李辉)
     :url: http://greyli.com
-    :copyright: © 2018 Grey Li
+    :copyright: © 2019 Grey Li
     :license: MIT, see LICENSE for more details.
 """
 import click
@@ -22,6 +22,10 @@ def index():
 @app.route('/hello')
 def say_hello():
     return '<h1>Hello, Flask!</h1>'
+
+
+if __name__ == '__main__':
+    app.run()
 
 
 # dynamic route, URL variable default
