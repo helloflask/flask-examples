@@ -58,7 +58,7 @@ $ flask run
 Similarly, you can run HTTP application like this:
 
 ```bash
-$ cd hello
+$ cd http
 $ flask run
 ```
 
