@@ -10,7 +10,7 @@ First, you need to clone this repo:
 $ git clone git@github.com:greyli/flask-examples.git
 ```
 
-Or
+Or:
 
 ```bash
 $ git clone https://github.com/greyli/flask-examples.git
@@ -22,7 +22,7 @@ Then change into the `flask-examples` folder:
 $ cd flask-examples
 ```
 
-Now, we will need to create a virtual environment and install all the dependencies. We have two options available for now:
+Now, we will need to create a virtual environment and install all the dependencies. We have two options available for now.
 
 Use Pipenv:
 
@@ -31,7 +31,7 @@ $ pipenv install
 $ pipenv shell
 ```
 
-Use pip + virtualenv
+Or use pip + virtualenv:
 
 ```bash
 $ virtualenv venv
@@ -58,7 +58,7 @@ $ flask run
 Similarly, you can run HTTP application like this:
 
 ```bash
-$ cd hello
+$ cd http
 $ flask run
 ```
 
