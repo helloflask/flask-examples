@@ -16,18 +16,11 @@ from flask_wtf import FlaskForm
 from wtforms import SubmitField, TextAreaField
 from wtforms.validators import DataRequired
 
-# SQLite URI compatible
-WIN = sys.platform.startswith('win')
-if WIN:
-    prefix = 'sqlite:///'
-else:
-    prefix = 'sqlite:////'
-
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'secret string')
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', prefix + os.path.join(app.root_path, 'data.db'))
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:////' + os.path.join(app.root_path, 'data.db'))
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
