@@ -4,7 +4,7 @@ Example applications for Flask beginners.
 
 ## Installation
 
-First, you need to clone this repo:
+First, you need to clone this repository:
 
 ```bash
 $ git clone git@github.com:greyli/flask-examples.git
