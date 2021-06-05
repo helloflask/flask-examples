@@ -3,6 +3,7 @@ alembic==1.5.8
 blinker==1.4
 click==7.1.2
 cssmin==0.2.0
+email-validator==1.1.2
 flask-assets==0.12
 flask-caching==1.7.2
 flask-ckeditor==0.4.3
@@ -10,7 +11,7 @@ flask-debugtoolbar==0.10.1
 flask-dropzone==1.5.3
 flask-mail==0.9.1
 flask-migrate==2.5.2
-flask-sqlalchemy==2.4.0
+flask-sqlalchemy==2.5.1
 flask-wtf==0.14.2
 flask==1.0
 greenlet==1.0.0 ; python_version >= '3'
@@ -28,5 +29,5 @@ sendgrid==6.0.5
 six==1.15.0
 sqlalchemy==1.4.3
 webassets==2.0
-werkzeug==0.15.4
+werkzeug==0.16.1
 wtforms==2.3.3

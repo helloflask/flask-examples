@@ -22,31 +22,17 @@ Then change into the `flask-examples` folder:
 $ cd flask-examples
 ```
 
-Now, we will need to create a virtual environment and install all the dependencies. We have two options available for now.
-
-Use Pipenv:
+Now, we will need to create a virtual environment and install all the dependencies:
 
 ```bash
-$ pipenv install
-$ pipenv shell
-```
-
-Or use pip + virtualenv:
-
-```bash
-$ virtualenv venv
+$ python3 -m venv venv  # on Windows, use "python -m venv venv" instead
 $ . venv/bin/activate  # on Windows, use "venv\Scripts\activate" instead
 $ pip install -r requirements.txt
 ```
 
 ## How to Run a Specific Example Application?
 
-**Before run a specific example application, make sure you have activated the virtual enviroment:**
-
-```bash
-$ cd flask-examples
-$ pipenv shell  # or ". venv/bin/activate" / "venv\Scripts\activate" (Windows)
-```
+**Before run a specific example application, make sure you have activated the virtual enviroment.**
 
 For example, if you want to run the Hello application, just execute these commands:
 
