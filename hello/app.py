@@ -24,10 +24,6 @@ def say_hello():
     return '<h1>Hello, Flask!</h1>'
 
 
-if __name__ == '__main__':
-    app.run()
-
-
 # dynamic route, URL variable default
 @app.route('/greet', defaults={'name': 'Programmer'})
 @app.route('/greet/<name>')
