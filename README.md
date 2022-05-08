@@ -13,7 +13,7 @@ $ git clone git@github.com:greyli/flask-examples.git
 Or:
 
 ```bash
-$ git clone https://github.com/greyli/flask-examples.git
+$ git clone https://github.com/helloflask/flask-examples.git
 ```
 
 Then change into the `flask-examples` folder:
