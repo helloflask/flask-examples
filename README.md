@@ -7,27 +7,27 @@ Example applications for Flask beginners.
 First, you need to clone this repository:
 
 ```bash
-$ git clone git@github.com:greyli/flask-examples.git
+git clone git@github.com:greyli/flask-examples.git
 ```
 
 Or:
 
 ```bash
-$ git clone https://github.com/helloflask/flask-examples.git
+git clone https://github.com/helloflask/flask-examples.git
 ```
 
 Then change into the `flask-examples` folder:
 
 ```bash
-$ cd flask-examples
+cd flask-examples
 ```
 
 Now, we will need to create a virtual environment and install all the dependencies:
 
 ```bash
-$ python3 -m venv venv  # on Windows, use "python -m venv venv" instead
-$ . venv/bin/activate  # on Windows, use "venv\Scripts\activate" instead
-$ pip install -r requirements.txt
+python3 -m venv venv  # on Windows, use "python -m venv venv" instead
+. venv/bin/activate   # on Windows, use "venv\Scripts\activate" instead
+pip install -r requirements.txt
 ```
 
 ## How to Run a Specific Example Application?
@@ -37,15 +37,15 @@ $ pip install -r requirements.txt
 For example, if you want to run the Hello application, just execute these commands:
 
 ```bash
-$ cd hello
-$ flask run
+cd hello
+flask run
 ```
 
 Similarly, you can run HTTP application like this:
 
 ```bash
-$ cd http
-$ flask run
+cd http
+flask run
 ```
 
 The applications will always running on http://localhost:5000.
