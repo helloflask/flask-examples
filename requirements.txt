@@ -13,7 +13,7 @@ flask-mail==0.9.1
 flask-migrate==2.5.2
 flask-sqlalchemy==2.5.1
 flask-wtf==0.14.2
-flask==1.0
+flask==2.3.2
 greenlet==1.0.0 ; python_version >= '3'
 itsdangerous==1.1.0
 jinja2==2.11.3
