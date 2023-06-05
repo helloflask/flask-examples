@@ -1,32 +1,50 @@
-name: Build and Push
+provider "aws" {
+ access_key = ${{ secrets.AWS_ACCESS_KEY_ID }}
+ secret_access_key = ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+ region = "us-west-1"
+}
 
-on:
-  push:
-    branches:
-      - main
-  schedule:
-    - cron: "0 19 * * 6"  # Every Saturday at 7 PM
+resource "aws_instance" "appsilon-task" {
+  ami           = "ami-0f8e81a3da6e2510a"  # Ubuntu 22.04 LTS
+  instance_type = "t2.micro"
 
-jobs:
-  build-and-push:
-    runs-on: ubuntu-latest
+  tags = {
+    Name = "Ubuntu EC2 Instance"
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 4.16"
+    }
+  }
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+  key_name               = "appsilon-key"
+  vpc_security_group_ids = ["sg-068f9f3a590c31fae"]
 
-      - name: Login to Docker Hub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+  }
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+  backend "s3" {
+  required_version = ">= 1.2.0"
 
-      - name: Build and push image
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          push: true
-          tags: ayanfe5/hello-world:latest
+   backend "s3" {
+    bucket         = "appsilon-task"
+    key            = "appsilonterraform.tfstate"
+    region         = "us-west-1"
+    encrypt        = true
+    dynamodb_table = "terraform-lock"
+  }
+}
+
+provider "aws" {
+  region  = "us-west-1"
+  access_key = var.aws_access_key 
+  secret_access_key = var.aws_secret_access_key
+}
+
+resource "aws_instance" "Appsilon-EC2" {
+  ami           = "ami-0f8e81a3da6e2510a" # Ubuntu 22.04 LTS
+  instance_type = "t2.micro"
+  tags = {
+    Name = "Ubuntu EC2 Instance"
+  }
+}
