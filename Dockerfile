@@ -5,7 +5,10 @@ FROM python:3.8-alpine
 WORKDIR /app
 
 # Copy the current directory contents into the container at /app
-COPY . /app
+COPY hello/app.py /app
+
+# Copy the requirements.txt file from the hello folder into the container at /app
+COPY hello/requirements.txt /app/requirements.txt
 
 # Install the dependencies
 RUN pip install --no-cache-dir -r requirements.txt
