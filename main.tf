@@ -17,7 +17,6 @@ resource "aws_instance" "appsilon-task" {
 
   }
   
-terraform {
   backend "s3" {
     bucket         = "appsilon-task"
     key            = "appsilonterraform.tfstate"
@@ -25,4 +24,3 @@ terraform {
     encrypt        = true
     dynamodb_table = "terraform-lock"
   }
-}
