@@ -1,12 +1,18 @@
-provider "aws" {
- region = "us-west-1"
-
- backend "s3" {
-    bucket         = "appsilon-task"
-    key            = "s3://appsilon-task/terraform.tfstate"
-    region         = "us-west-1"
-    access_key     = "AKIAZGJDMTD7E3QJJB4N"
-    secret_key     = "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"
-    dynamodb_table = "Appsilon-table"
+# Configure the AWS provider and version
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 3.0.2"
+    }
   }
+
+  backend "s3" {
+  }
+
+  required_version = ">= 1.1.0"
+}
+
+provider "aws" {
+  features {}
 }
