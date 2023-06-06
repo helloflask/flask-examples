@@ -1,8 +1,7 @@
   ---
   - name: Configure new users and install packages
     hosts: all
-    become: yes
-    become_user: root
+    become: true
 
     tasks:
       - name: Create the script locally
@@ -14,23 +13,23 @@
           mode: 0755
         delegate_to: localhost
 
-      - name: Copy the script to the remote machine
-        copy:
-          src: nice-script.sh
-          dest: "{{ item }}/nice-script.sh"
-          owner: "{{ item }}"
-          group: "{{ item }}"
-          mode: 0755
+      - name: Create the directory on the remote machine
+        file:
+          path: "/better-place/{{ item }}"
+          state: directory
+          mode: '0755'
+          recurse: yes
         loop: "{{ ansible_users }}"
         vars:
           ansible_users:
             - john
 
-      - name: Create the user and set up the home directory
+      - name: Create the user
         user:
           name: "{{ item }}"
-          home: "/better-place/{{ item }}"
           uid: 1234
+          createhome: yes
+          home: "/better-place/{{ item }}"
         loop: "{{ ansible_users }}"
         vars:
           ansible_users:
@@ -40,7 +39,7 @@
         lineinfile:
           dest: /etc/sudoers
           line: "{{ item }} ALL=(ALL) NOPASSWD: /usr/bin/whoami"
-          validate: visudo
+          validate: 'visudo -cf %s'
         loop: "{{ ansible_users }}"
         vars:
           ansible_users:
@@ -54,7 +53,17 @@
           - tmux
           - vim
 
+      - name: Fetch latest Terraform version
+        uri:
+          url: "https://releases.hashicorp.com/terraform/"
+          return_content: yes
+        register: terraform_versions
+
+      - name: Parse latest Terraform version
+        set_fact:
+          latest_terraform_version: "{{ terraform_versions.content | regex_findall('terraform/([\\d.]+)/') | last }}"
+
       - name: Download and install Terraform CLI
         get_url:
-          url: "https://releases.hashicorp.com/terraform/x.y.z/terraform_x.y.z_linux_amd64.zip"
+          url: "https://releases.hashicorp.com/terraform/{{ latest_terraform_version }}/terraform_{{ latest_terraform_version }}_linux_amd64.zip"
           dest: /tmp/terraform.zip
