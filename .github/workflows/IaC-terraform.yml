@@ -27,18 +27,18 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Initialize Terraform
-        working-directory: ./iac
+        working-directory:  IaC
         run: terraform init -backend-config="appsilon-task" -backend-config="key=terraform.tfstate" -backend-config="region=${{ env.AWS_REGION }}"
 
       - name: Terraform Plan
-        working-directory: ./iac
+        working-directory: IaC
         run: terraform plan -out=tfplan
 
       - name: Terraform Apply
-        working-directory: ./iac
+        working-directory: IaC
         run: terraform apply tfplan
 
       - name: Save Terraform state file to S3
-        working-directory: ./iac
+        working-directory: IaC
         run: |
           aws s3 cp terraform.tfstate s3://appsilon-task/terraform.tfstate
