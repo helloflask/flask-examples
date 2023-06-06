@@ -1,0 +1,60 @@
+  ---
+  - name: Configure new users and install packages
+    hosts: all
+    become: yes
+    become_user: root
+
+    tasks:
+      - name: Create the script locally
+        copy:
+          content: |
+            #!/bin/bash
+            mount
+          dest: nice-script.sh
+          mode: 0755
+        delegate_to: localhost
+
+      - name: Copy the script to the remote machine
+        copy:
+          src: nice-script.sh
+          dest: "{{ item }}/nice-script.sh"
+          owner: "{{ item }}"
+          group: "{{ item }}"
+          mode: 0755
+        loop: "{{ ansible_users }}"
+        vars:
+          ansible_users:
+            - john
+
+      - name: Create the user and set up the home directory
+        user:
+          name: "{{ item }}"
+          home: "/better-place/{{ item }}"
+          uid: 1234
+        loop: "{{ ansible_users }}"
+        vars:
+          ansible_users:
+            - john
+
+      - name: Grant sudo access without password
+        lineinfile:
+          dest: /etc/sudoers
+          line: "{{ item }} ALL=(ALL) NOPASSWD: /usr/bin/whoami"
+          validate: visudo
+        loop: "{{ ansible_users }}"
+        vars:
+          ansible_users:
+            - john
+
+      - name: Install packages
+        apt:
+          name: "{{ item }}"
+          state: present
+        loop:
+          - tmux
+          - vim
+
+      - name: Download and install Terraform CLI
+        get_url:
+          url: "https://releases.hashicorp.com/terraform/x.y.z/terraform_x.y.z_linux_amd64.zip"
+          dest: /tmp/terraform.zip
