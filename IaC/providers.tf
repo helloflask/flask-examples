@@ -8,6 +8,10 @@ terraform {
   }
 
   backend "s3" {
+    bucket         = "appsilon-task"
+    key            = "terraform.tfstate"
+    region         = "us-west-1"
+    dynamodb_table = "terraform-lock"
   }
 
   #required_version = ">= 1.1.0"
