@@ -32,11 +32,11 @@ jobs:
 
       - name: Terraform Plan
         working-directory: IaC
-        run: terraform plan -out=tfplan
+        run: terraform plan -out=tfplan -lock=false
 
       - name: Terraform Apply
         working-directory: IaC
-        run: terraform apply tfplan
+        run: terraform apply tfplan -lock=false
 
       - name: Save Terraform state file to S3
         working-directory: IaC
