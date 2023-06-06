@@ -11,7 +11,7 @@ terraform {
     bucket         = "appsilon-task"
     key            = "appsilon-terraform.tfstate"
     region         = "us-west-1"
-    dynamodb_table = "appsilon-terraform-lock"
+    #dynamodb_table = "appsilon-terraform-lock"
   }
 
   #required_version = ">= 1.1.0"
