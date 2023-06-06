@@ -4,15 +4,8 @@ resource "aws_instance" "appsilon-task" {
 
   tags = {
     Name = "Ubuntu EC2 Instance"
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 4.16"
-    }
   }
-
   key_name               = "appsilon-key"
-  vpc_security_group_ids = ["sg-068f9f3a590c31fae"]
+  vpc_security_group_ids = "sg-068f9f3a590c31fae"
 
   }
