@@ -5,32 +5,30 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> $GITHUB_ENV
-          echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_ENV
-          aws-region: us-west-1
-          
-      - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v1
-        with:
-          terraform_version: 1.0.0
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-west-1
 
-      - name: Initialize Terraform
-        run: terraform init -backend-config="bucket=appsilon-task" -backend-config="key=appsilonterraform.tfstate" -backend-config="region=us-west-1"
+    - name: Set up Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 1.0.0
 
-      - name: Terraform Plan
-        run: terraform plan
+    - name: Initialize Terraform
+      run: terraform init -backend-config="bucket=appsilon-task" -backend-config="key=appsilonterraform.tfstate" -backend-config="region=us-west-1"
 
-      - name: Terraform Apply
-        run: terraform apply -auto-approve
+    - name: Terraform Plan
+      run: terraform plan
 
+    - name: Terraform Apply
+      run: terraform apply -auto-approve
 
 
 
