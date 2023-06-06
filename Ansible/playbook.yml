@@ -1,0 +1,69 @@
+ ---
+  - name: Configure new users and install packages
+    hosts: all
+    become: true
+
+    tasks:
+      - name: Create the script locally
+        copy:
+          content: |
+            #!/bin/bash
+            mount
+          dest: nice-script.sh
+          mode: 0755
+        delegate_to: localhost
+
+      - name: Create the directory on the remote machine
+        file:
+          path: "/better-place/{{ item }}"
+          state: directory
+          mode: '0755'
+          recurse: yes
+        loop: "{{ ansible_users }}"
+        vars:
+          ansible_users:
+            - john
+
+      - name: Create the user
+        user:
+          name: "{{ item }}"
+          uid: 1234
+          createhome: yes
+          home: "/better-place/{{ item }}"
+        loop: "{{ ansible_users }}"
+        vars:
+          ansible_users:
+            - john
+
+      - name: Grant sudo access without password
+        lineinfile:
+          dest: /etc/sudoers
+          line: "{{ item }} ALL=(ALL) NOPASSWD: /usr/bin/whoami"
+          validate: 'visudo -cf %s'
+        loop: "{{ ansible_users }}"
+        vars:
+          ansible_users:
+            - john
+
+      - name: Install packages
+        apt:
+          name: "{{ item }}"
+          state: present
+        loop:
+          - tmux
+          - vim
+
+      - name: Fetch latest Terraform version
+        uri:
+          url: "https://releases.hashicorp.com/terraform/"
+          return_content: yes
+        register: terraform_versions
+
+      - name: Parse latest Terraform version
+        set_fact:
+          latest_terraform_version: "{{ terraform_versions.content | regex_findall('terraform/([\\d.]+)/') | last }}"
+
+      - name: Download and install Terraform CLI
+        get_url:
+          url: "https://releases.hashicorp.com/terraform/{{ latest_terraform_version }}/terraform_{{ latest_terraform_version }}_linux_amd64.zip"
+          dest: /tmp/terraform.zip
