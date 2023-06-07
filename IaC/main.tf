@@ -6,6 +6,6 @@ resource "aws_instance" "appsilon-task" {
     Name = "Ubuntu EC2 Instance"
   }
   key_name               = "appsilon-key"
-  vpc_security_group_ids = "sg-068f9f3a590c31fae"
+  vpc_security_group_ids = ["sg-068f9f3a590c31fae"]
 
   }
