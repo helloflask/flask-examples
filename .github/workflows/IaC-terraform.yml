@@ -30,13 +30,16 @@ jobs:
         working-directory:  IaC
         run: terraform init -backend-config="bucket=appsilon-task" -backend-config="key=appsilon-terraform.tfstate" -backend-config="region=${{ env.AWS_REGION }}"
 
-      - name: Terraform Plan
+      - name: Terraform Validation
         working-directory: IaC
-        run: terraform plan -out=tfplan -lock=false
+        run: terraform validate
 
       - name: Terraform Apply
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         working-directory: IaC
-        run: terraform apply tfplan -lock=false
+        run: terraform apply -auto-approve -input=false
 
       - name: Save Terraform state file to S3
         working-directory: IaC
