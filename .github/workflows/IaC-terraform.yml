@@ -44,4 +44,5 @@ jobs:
       - name: Save Terraform state file to S3
         working-directory: IaC
         run: |
-          aws s3 cp terraform.tfstate s3://appsilon-task/appsilon-terraform.tfstate
+          aws s3 cp tfstate-files/terraform.tfstate s3://appsilon-task/appsilon-terraform.tfstate
+
