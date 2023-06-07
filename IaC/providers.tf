@@ -11,17 +11,15 @@ terraform {
     bucket         = "appsilon-task"
     key            = "appsilon-terraform.tfstate"
     region         = "us-west-1"
-    dynamodb_table = "appsilon-terraform-lock"
   }
 
   #required_version = ">= 1.1.0"
 }
 
 provider "aws" {
-  access_key = "AKIAZGJDMTD7E3QJJB4N"
-  secret_key = "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"
+  access_key = var.access_key
+  secret_key = var.secret_key
   region     = "us-west-1"
-  version    = "~> 3"
-
+  
   features {}
 }
