@@ -6,7 +6,7 @@ After spinning up the server, these commands were ran on it to updates and also 
 sudo apt update      
 sudo apt install ansible -y
 ```
-All the IP addresses of the target PC I configured was added to the inventory.txt file, whilst the public key of this host server where ansible is installed on was added to the authorized key file of the target server, so as to enable ease of logging in without password. The commands below were the steps I took to run the playbook.yml
+All the IP addresses of the target PC I configured was added to the inventory.txt file, whilst the public key of the host server where ansible is installed on was added to the authorized key file of the target server, so as to enable ease of logging in without password. The commands below were the steps I took to run the playbook.yml
 
 ```bash 
 mkdir Appsilonansible
