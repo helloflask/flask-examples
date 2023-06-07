@@ -12,7 +12,7 @@ Terraform validate
 Terraform plan
 Terraform apply
 ```
-Also in the IaC-terraform.yml workflow, I specified that terraform should save the statefile to my S3 bucket already created with the public access and bucket policy updated and I also added the IAM user credential (Access key and Secret key) to secrets options in the github for ease of accessing AWS platform.
+Also in the IaC-terraform.yml workflow, I specified that terraform should save the statefile to my S3 bucket already created with the public access and bucket policy updated and I also added the IAM user credential (Access key and Secret key) to secrets options in github secret for ease of accessing AWS platform.
 
 ## Specifications used in the terraform files
 
@@ -21,4 +21,6 @@ AMI:Canonical, Ubuntu, 22.04 LTS, amd64 jammy image build on 2023-05-16
 AMI ID:ami-0f8e81a3da6e2510a
 Instance type: t2.micro
 Size: 1vCPU, 1Gb RAM
+region: us-west-1
+S3 Bucket: appsilon-task
 ```
