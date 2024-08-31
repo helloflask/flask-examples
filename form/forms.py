@@ -12,7 +12,6 @@ from wtforms import StringField, PasswordField, BooleanField, IntegerField, \
     TextAreaField, SubmitField, MultipleFileField
 from wtforms.validators import DataRequired, Length, ValidationError, Email
 
-
 # 4.2.1 basic form example
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
