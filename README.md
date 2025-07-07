@@ -53,7 +53,7 @@ The applications will always running on http://localhost:5000.
 ## Example Applications Menu
 
 - Hello (`/hello`): Say hello with Flask.
-- HTTP (`/http`): HTTP handing in Flask.
+- HTTP (`/http`): HTTP handling in Flask.
 - Templates (`/templates`): Templating with Flask and Jinja2.
 - Form (`/form`): Form handing with Flask-WTF (WTForms), File upload and integrating with Flask-CKEditor, Flask-Dropzone.
 - Database (`/database`): Database with Flask-SQLAlchemy (SQLAlchemy).
